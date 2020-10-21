@@ -1,0 +1,1 @@
+export const keyChars = ['9', 'A']

@@ -1,1 +1,3 @@
-console.log('testando...')
+import extractMask from './extract-mask'
+
+extractMask()
