@@ -8,7 +8,7 @@ const extractMask = (stringMask) => {
 	const mask = []
 	let isToken = false
 	for(let i = 0; i <= arrayMask.length; i++) {
-		if(!keyChars.includes(arrayMask[i]) && i !== arrayMask.length) { // primeiro caractere do token
+		if(!keyChars.includes(arrayMask[i]) && i !== arrayMask.length) {
 			if(!isToken) {
 				token.start = i
 				isToken = true
