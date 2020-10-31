@@ -1,25 +1,25 @@
 import extractMask from './extract-mask'
 
-test('extractMask()', () => {
-  expect(extractMask('99-9')).toEqual([
-    { maskChar: '-', index: 2 },
+test('extractMask("99-9+")', () => {
+  const mask = extractMask('99-9+')
+  expect(mask).toEqual([
+    { token: '-', start: 2, end: 3 },
+    { token: '+', start: 4, end: 5 },
   ])
-  expect(extractMask('999.999.999-99')).toEqual([
-    { maskChar: '.', index: 3 },
-    { maskChar: '.', index: 7 },
-    { maskChar: '-', index: 11 },
+})
+test('extractMask("99-9+(9")', () => {
+  const mask = extractMask('99-9+(9')
+  expect(mask).toEqual([
+    { token: '-', start: 2, end: 3 },
+    { token: '+(', start: 4, end: 6 },
   ])
-  expect(extractMask('99/99/9999')).toEqual([
-    { maskChar: '/', index: 2 },
-    { maskChar: '/', index: 5 },
-  ])
-  expect(extractMask('99//99/9999')).toEqual([
-    { maskChar: '/', index: 2 },
-    { maskChar: '/', index: 3 },
-    { maskChar: '/', index: 6 },
-  ])
-  expect(extractMask('99é9+')).toEqual([
-    { maskChar: 'é', index: 2 },
-    { maskChar: '+', index: 4 },
+})
+test('extractMask("$%99-9+(9@#")', () => {
+  const mask = extractMask('$%99-9+(9@#')
+  expect(mask).toEqual([
+    { token: '$%', start: 0, end: 2 },
+    { token: '-', start: 4, end: 5 },
+    { token: '+(', start: 6, end: 8 },
+    { token: '@#', start: 9, end: 11 },
   ])
 })
