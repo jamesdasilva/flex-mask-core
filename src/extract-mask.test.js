@@ -1,4 +1,3 @@
-import {expect, test} from '@jest/globals'
 import extractMask from './extract-mask'
 
 test('Date format - extractMask("99/99/9")', () => {
