@@ -12,6 +12,12 @@ export const escapeChars = {
   ')': '\\)',
   '*': '\\*',
   '+': '\\+',
+  '^': '\\^',
+  '$': '\\$',
+  '[': '\\[',
+  ']': '\\]',
+  '{': '\\{',
+  '}': '\\}',
 }
 export const escapeCharsFn = (chars) => {
   return Array.from(chars).map(char => escapeChars[char]).join('')

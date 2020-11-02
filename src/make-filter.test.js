@@ -57,7 +57,7 @@ test('makeFilter() - "99***99-AAA"', () => {
   expect(filter.test('12ééé47-aas')).toBe(true)
   expect(filter.test('12ééé47-aasa')).toBe(false)
 })
-test('only makeFilter() - 99-9+(9', () => {
+test('makeFilter() - 99-9+(9', () => {
   const filter = makeFilter([
     { token: '99', start: 0, end: 2, keyChar: true, regEx: regExTokens['9'] },
     { token: '-', start: 2, end: 3, keyChar: false, regEx: escapeChars['-'] },
