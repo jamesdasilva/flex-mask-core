@@ -1,3 +1,5 @@
-import extractMask from './extract-mask'
+import useMask from './react-hooks/use-mask'
 
-console.log(extractMask('99//-9/9+++9()'))
+export default {
+  useMask
+}

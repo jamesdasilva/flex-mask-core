@@ -7,7 +7,7 @@ test('applyMask()', () => {
   ]
   const value = '999'
   const valueWithMask = applyMask(mask, value)
-  expect(valueWithMask).toBe('99-9+')
+  expect(valueWithMask).toBe('99-9')
 })
 test('applyMask()', () => {
   const mask = [
@@ -27,7 +27,7 @@ test('applyMask()', () => {
   ]
   const value = '9999'
   const valueWithMask = applyMask(mask, value)
-  expect(valueWithMask).toBe('$%99-9+(9@#')
+  expect(valueWithMask).toBe('$%99-9+(9')
 })
 test('only applyMask(999.999.999-9)', () => {
   const mask = [

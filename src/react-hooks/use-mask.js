@@ -1,5 +1,5 @@
-import extractMask from './extract-mask'
-import applyMask from './apply-mask'
+import extractMask from '../flex-mask-core/extract-mask'
+import applyMask from '../flex-mask-core/apply-mask'
 
 const useMask = (maskStr) => {
   let value = ''
