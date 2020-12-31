@@ -1,4 +1,4 @@
-import useMask from './use-mask'
+import useMask from './make-mask-applicator'
 
 test('useMask("999/9")', () => {
   const changeValue = useMask('999/9')

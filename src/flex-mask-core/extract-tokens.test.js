@@ -11,6 +11,19 @@ test('Date format - extractTokens("99/99/9999")', () => {
     { token: '9999', start: 6, end: 10, keyChar: true, regEx: regExTokens['9'] }
   ])
 })
+
+test('extractTokens("(99) 9999-9999")', () => {
+  const mask = extractTokens('(99) 9999-9999')
+  expect(mask).toEqual([
+    { token: '(', start: 0, end: 1, keyChar: false, regEx: '(' },
+    { token: '99', start: 1, end: 3, keyChar: true, regEx: regExTokens['9'] },
+    { token: ') ', start: 3, end: 5, keyChar: false, regEx: ') ' },
+    { token: '9999', start: 5, end: 9, keyChar: true, regEx: regExTokens['9'] },
+    { token: '-', start: 9, end: 10, keyChar: false, regEx: '-' },
+    { token: '9999', start: 10, end: 14, keyChar: true, regEx: regExTokens['9'] },
+  ])
+})
+
 test('extractTokens("99-A")', () => {
   const mask = extractTokens('99-9//A')
   expect(mask).toEqual([
@@ -21,6 +34,7 @@ test('extractTokens("99-A")', () => {
     { token: 'A', start: 6, end: 7, keyChar: true, regEx: regExTokens['A'] },
   ])
 })
+
 test('extractTokens("99***99-AAA")', () => {
   const mask = extractTokens('99***99-AAA')
   expect(mask).toEqual([
@@ -31,6 +45,7 @@ test('extractTokens("99***99-AAA")', () => {
     { token: 'AAA', start: 8, end: 11, keyChar: true, regEx: regExTokens['A'] }
   ])
 })
+
 test('extractTokens("99-9+(9")', () => {
   const mask = extractTokens('99-9+(9')
   expect(mask).toEqual([
@@ -41,6 +56,7 @@ test('extractTokens("99-9+(9")', () => {
     { token: '9', start: 6, end: 7, keyChar: true, regEx: regExTokens['9'] },
   ])
 })
+
 test('extractTokens("$%99-9+(9@#")', () => {
   const mask = extractTokens('$%99-9+(9@#')
   expect(mask).toEqual([
@@ -51,5 +67,12 @@ test('extractTokens("$%99-9+(9@#")', () => {
     { token: '+(', start: 6, end: 8, keyChar: false, regEx: '+(' },
     { token: '9', start: 8, end: 9, keyChar: true, regEx: regExTokens['9'] },
     { token: '@#', start: 9, end: 11, keyChar: false, regEx: '@#' },
+  ])
+})
+
+test('extractTokens("999999")', () => {
+  const mask = extractTokens('999999')
+  expect(mask).toEqual([
+    { token: '999999', start: 0, end: 6, keyChar: true, regEx: regExTokens['9'] },
   ])
 })

@@ -20,6 +20,7 @@ test('Date format - makeFilter() - "99/99/9999"', () => {
   expect(filter.test('22/22/2222')).toBe(true)
   expect(filter.test('22/22/22222')).toBe(false)
 })
+
 test('CPF format - makeFilter() - "99/99/9999"', () => {
   const filter = makeFilter([
     { token: '999', start: 0, end: 3, keyChar: true, regEx: regExTokens['9'] },
@@ -44,6 +45,7 @@ test('CPF format - makeFilter() - "99/99/9999"', () => {
   expect(filter.test('999.999.999-99')).toBe(true)
   expect(filter.test('999.999.999-999')).toBe(false)
 })
+
 test('makeFilter() - "99***99-AAA"', () => {
   const filter = makeFilter([
     { token: '99', start: 0, end: 2, keyChar: true, regEx: regExTokens['9'] },
@@ -57,13 +59,15 @@ test('makeFilter() - "99***99-AAA"', () => {
   expect(filter.test('12ééé47-aas')).toBe(true)
   expect(filter.test('12ééé47-aasa')).toBe(false)
 })
-test('makeFilter() - 99-9+(9', () => {
+
+test('makeFilter() - 999999', () => {
   const filter = makeFilter([
-    { token: '99', start: 0, end: 2, keyChar: true, regEx: regExTokens['9'] },
-    { token: '-', start: 2, end: 3, keyChar: false, regEx: escapeChars['-'] },
-    { token: '9', start: 3, end: 4, keyChar: true, regEx: regExTokens['9'] },
-    { token: '+(', start: 4, end: 6, keyChar: false, regEx: escapeCharsFn('+(') },
-    { token: '9', start: 6, end: 7, keyChar: true, regEx: regExTokens['9'] },
+    { token: '999999', start: 0, end: 6, keyChar: true, regEx: regExTokens['9'] },
   ])
-  expect(true).toBe(true)
+  expect(filter).toEqual(new RegExp(/^[0-9]{0,6}$/))
+  expect(filter.test('')).toBe(true)
+  expect(filter.test('1')).toBe(true)
+  expect(filter.test('12')).toBe(true)
+  expect(filter.test('123888')).toBe(true)
+  expect(filter.test('1238883')).toBe(false)
 })

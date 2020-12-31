@@ -2,13 +2,13 @@ const path = require('path');
 
 module.exports = () => {
   return {
+    mode: 'production',
     entry: './src/index.js',
     devtool: 'inline-source-map',
-    target: 'node',
     output: {
-      path: path.resolve(__dirname, 'dist'),
+      path: path.resolve(__dirname, 'lib'),
       filename: 'bundle.js',
-      publicPath: '/'
+      libraryTarget: 'commonjs2',
     },
     module: {
       rules: [

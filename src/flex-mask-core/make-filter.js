@@ -7,7 +7,7 @@ const makeFilter = (mask) => {
       accFilter = `${accFilter}${mask[i].regEx}{${mask[i].end - mask[i].start}}`
     } else {
       accFilter = `${accFilter}${mask[i].regEx}`
-    } 
+    }
   }
   return new RegExp(filter.join('|'))
 }
