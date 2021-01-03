@@ -28,3 +28,31 @@ test('expandQuantifiers("**^4>9AA") === "**9999AA"', () => {
   const stringMask = '**^4>9AA'
   expect(expandQuantifiers(stringMask)).toBe('**9999AA')
 })
+test('expandQuantifiers("99^4>AA") === "99AAAAA"', () => {
+  const stringMask = '99^4>AA'
+  expect(expandQuantifiers(stringMask)).toBe('99AAAAA')
+})
+test('expandQuantifiers("^3>9.999.999-99") === "999.999.999-99"', () => {
+  const stringMask = '^3>9.999.999-99'
+  expect(expandQuantifiers(stringMask)).toBe('999.999.999-99')
+})
+test('expandQuantifiers("^39.999.999-99") === "^39.999.999-99"', () => {
+  const stringMask = '^39.999.999-99'
+  expect(expandQuantifiers(stringMask)).toBe('^39.999.999-99')
+})
+test('expandQuantifiers("999.999.999-99") === "999.999.999-99"', () => {
+  const stringMask = '999.999.999-99'
+  expect(expandQuantifiers(stringMask)).toBe('999.999.999-99')
+})
+test('expandQuantifiers("") === ""', () => {
+  const stringMask = ''
+  expect(expandQuantifiers(stringMask)).toBe('')
+})
+test('expandQuantifiers(null) === null', () => {
+  const stringMask = null
+  expect(expandQuantifiers(stringMask)).toBe(null)
+})
+test('expandQuantifiers(undefined) === undefined', () => {
+  const stringMask = undefined
+  expect(expandQuantifiers(stringMask)).toBe(undefined)
+})
