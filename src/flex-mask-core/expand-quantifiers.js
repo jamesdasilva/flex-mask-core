@@ -1,3 +1,6 @@
+const lengthWithCmd = {}
+const tokenWithCmd = {}
+
 const makeExpandedToken = (char, length) => {
   const expandedToken = []
   for(let i = 0; i < length; i++) {
@@ -6,19 +9,66 @@ const makeExpandedToken = (char, length) => {
   return expandedToken
 }
 
-const expandQuantifiers = (stringMask) => {
-  let lengthWithCmd = stringMask?.match(/\^\d+/) ?? []
-  if (lengthWithCmd.length === 0) return stringMask
-  const length = lengthWithCmd[0].slice(1, lengthWithCmd[0].length)
-  const charWithCmd = stringMask?.match(/\>\d{1}|\>\w{1}|\>\*{1}/) ?? []
-  if (charWithCmd.length === 0) return stringMask
-  const char = charWithCmd[0].slice(1, charWithCmd[0].length)
-  const expandedToken = makeExpandedToken(char, length)
+const getLengthWithCmd = maskStr => maskStr?.match(/\^\d+/) ?? []
+
+const getPureLength = stringMask => {
+  if(!lengthWithCmd[stringMask])
+    lengthWithCmd[stringMask] = getLengthWithCmd(stringMask)
+  
+  if (lengthWithCmd[stringMask].length === 0) return null
+
+  return lengthWithCmd[stringMask][0].slice(1, lengthWithCmd[stringMask][0].length) 
+}
+
+const getTokenWithCmd = maskStr => maskStr?.match(/\>\d+;|\>\w+;|\>\*+;/) ?? []
+
+const getPureToken = (stringMask) => {
+  tokenWithCmd[stringMask] = getTokenWithCmd(stringMask)
+  if (tokenWithCmd[stringMask].length === 0) return null
+
+  return tokenWithCmd[stringMask][0].slice(1, tokenWithCmd[stringMask][0].length - 1)
+}
+
+const getStart = (stringMask) => {
+  if(!lengthWithCmd[stringMask])
+    lengthWithCmd[stringMask] = getLengthWithCmd(stringMask)
+
+  if (lengthWithCmd[stringMask].length === 0) return null
+
+  return lengthWithCmd[stringMask].index
+}
+
+const getDel = (stringMask) => {
+  if(!lengthWithCmd[stringMask])
+    lengthWithCmd[stringMask] = getLengthWithCmd(stringMask)
+
+  if (lengthWithCmd[stringMask].length === 0) return null
+
+  tokenWithCmd[stringMask] = getTokenWithCmd(stringMask)
+  if (tokenWithCmd[stringMask].length === 0) return null
+
+  return lengthWithCmd[stringMask][0].length + tokenWithCmd[stringMask][0].length
+}
+
+const insertExpandedTokenInStringMask = (stringMask, expandedToken, start, del) => {
   const arrayMask = Array.from(stringMask)
-  const start = lengthWithCmd.index
-  const del = lengthWithCmd[0].length + charWithCmd[0].length
   arrayMask.splice(start, del, ...expandedToken)
-  return expandQuantifiers(arrayMask.join(''))
+  return arrayMask.join('')
+}
+
+const expandQuantifiers = (stringMask) => {
+  const length = getPureLength(stringMask)
+  if (!length) return stringMask
+
+  const token = getPureToken(stringMask)
+  if (!token) return stringMask
+
+  const expandedToken = makeExpandedToken(token, length)
+  const start = getStart(stringMask)
+  const del = getDel(stringMask)
+  const newStringMask = insertExpandedTokenInStringMask(stringMask, expandedToken, start, del)
+
+  return expandQuantifiers(newStringMask)
 }
 
 export default expandQuantifiers
