@@ -29,7 +29,7 @@ test('applyMask()', () => {
   const valueWithMask = applyMask(mask, value)
   expect(valueWithMask).toBe('$%99-9+(9')
 })
-test('only applyMask(999.999.999-9)', () => {
+test('applyMask(999.999.999-9)', () => {
   const mask = [
     { token: '.', start: 3, end: 4 },
     { token: '.', start: 7, end: 8 },

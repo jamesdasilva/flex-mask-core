@@ -36,7 +36,19 @@ test('expandQuantifiers("^3>9.999.999-99") === "999.999.999-99"', () => {
   const stringMask = '^3>9.999.999-99'
   expect(expandQuantifiers(stringMask)).toBe('999.999.999-99')
 })
-test('expandQuantifiers("^39.999.999-99") === "^39.999.999-99"', () => {
+test('only expandQuantifiers("^3>9.^3>9.999-99") === "999.999.999-99"', () => {
+  const stringMask = '^3>9.^3>9.999-99'
+  expect(expandQuantifiers(stringMask)).toBe('999.999.999-99')
+})
+test('only expandQuantifiers("^3>9.^3>9.^3>9-99") === "999.999.999-99"', () => {
+  const stringMask = '^3>9.^3>9.^3>9-99'
+  expect(expandQuantifiers(stringMask)).toBe('999.999.999-99')
+})
+test('only expandQuantifiers("^3>9.^3>9.^3>9-^2>9") === "999.999.999-99"', () => {
+  const stringMask = '^3>9.^3>9.^3>9-^2>9'
+  expect(expandQuantifiers(stringMask)).toBe('999.999.999-99')
+})
+test('expandQuantifiers("^39.999.999-99") === " ^39.999.999-99"', () => {
   const stringMask = '^39.999.999-99'
   expect(expandQuantifiers(stringMask)).toBe('^39.999.999-99')
 })

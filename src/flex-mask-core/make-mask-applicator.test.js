@@ -20,6 +20,14 @@ test('Credit card format - makeMaskApplicator("9999-9999-9999-9999")', () => {
   const changeValue = makeMaskApplicator("9999-9999-9999-9999")
   expect(changeValue('0320250867998765')).toBe('0320-2508-6799-8765')
 })
+test('Credit card format - makeMaskApplicator("^4>9-9999-9999-9999")', () => {
+  const changeValue = makeMaskApplicator("^4>9-9999-9999-9999")
+  expect(changeValue('0320250867998765')).toBe('0320-2508-6799-8765')
+})
+test('Credit card format - makeMaskApplicator("^4>9-^4>9-^4>9-^4>9")', () => {
+  const changeValue = makeMaskApplicator("^4>9-^4>9-^4>9-^4>9")
+  expect(changeValue('0320250867998765')).toBe('0320-2508-6799-8765')
+})
 test('Home phone format - makeMaskApplicator("(99) 9999-9999")', () => {
   const changeValue = makeMaskApplicator("(99) 9999-9999")
   expect(changeValue('0302508679')).toBe('(03) 0250-8679')
