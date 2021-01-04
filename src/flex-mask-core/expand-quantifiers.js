@@ -56,19 +56,26 @@ const insertExpandedTokenInStringMask = (stringMask, expandedToken, start, del) 
   return arrayMask.join('')
 }
 
-const expandQuantifiers = (stringMask) => {
-  const length = getPureLength(stringMask)
-  if (!length) return stringMask
+const expandQuantifiers = (context, next = () => {}) => {
+  
+  const runner = (stringMask) => {
+    const length = getPureLength(stringMask)
+    if (!length) return stringMask
+  
+    const token = getPureToken(stringMask)
+    if (!token) return stringMask
+  
+    const expandedToken = makeExpandedToken(token, length)
+    const start = getStart(stringMask)
+    const del = getDel(stringMask)
+    const newStringMask = insertExpandedTokenInStringMask(stringMask, expandedToken, start, del)
 
-  const token = getPureToken(stringMask)
-  if (!token) return stringMask
+    return runner(newStringMask)
+  }
 
-  const expandedToken = makeExpandedToken(token, length)
-  const start = getStart(stringMask)
-  const del = getDel(stringMask)
-  const newStringMask = insertExpandedTokenInStringMask(stringMask, expandedToken, start, del)
+  context.stringMask = runner(context.stringMask)
 
-  return expandQuantifiers(newStringMask)
+  next()
 }
 
 export default expandQuantifiers

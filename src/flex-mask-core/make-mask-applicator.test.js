@@ -43,6 +43,7 @@ test('Home phone format - makeMaskApplicator("(99) 9999-9999")', () => {
 test('Cell phone format - makeMaskApplicator("(99) 9 9999-9999")', () => {
   const changeValue = makeMaskApplicator("(99) 9 9999-9999")
   expect(changeValue('03202508679')).toBe('(03) 2 0250-8679')
+  expect(changeValue('(03) 2 0250-8679')).toBe('(03) 2 0250-8679')
 })
 
 test('International phone format - makeMaskApplicator("+55 (99) 9 9999-9999")', () => {
@@ -57,6 +58,7 @@ test('makeMaskApplicator("<<999.999,99")', () => {
   expect(changeValue('111')).toBe('1,11')
   expect(changeValue('111111')).toBe('1.111,11')
   expect(changeValue('11111111')).toBe('111.111,11')
+  expect(changeValue('111.111,11')).toBe('111.111,11')
 })
 
 test('makeMaskApplicator(">>999.999,99")', () => {
@@ -75,9 +77,10 @@ test("makeMaskApplicator(''R$ ;999.999,99)", () => {
   expect(changeValue('11')).toBe('R$ 11')
   expect(changeValue('111')).toBe('R$ 1,11')
   expect(changeValue('R$ 111')).toBe('R$ 1,11')
+  expect(changeValue('R$ 1,11')).toBe('R$ 1,11')
 })
 
-test("only makeMaskApplicator(''#;999)", () => {
+test("makeMaskApplicator(''#;999)", () => {
   const changeValue = makeMaskApplicator("''#;999")
   expect(changeValue('')).toBe('')
   expect(changeValue('11')).toBe('#11')

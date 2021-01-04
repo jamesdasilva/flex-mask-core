@@ -1,25 +1,40 @@
-import defineWhichDirection from './extract-direction'
+import extractDirection from './extract-direction'
 
-test('defineWhichDirection("123456789")', () => {
-  const stringMask = '123456789' 
-  expect(defineWhichDirection(stringMask)).toEqual({
+test('extractDirection("123456789")', () => { 
+  const mask = {
+    stringMask: '123456789' 
+  } 
+  const next = jest.fn();
+  extractDirection(mask, next)
+  expect(mask).toEqual({
     direction: "right",
-    maskStr: "123456789"
+    stringMask: "123456789"
   })
+  expect(next).toHaveBeenCalled()
 })
 
-test('defineWhichDirection(">>123456789")', () => {
-  const stringMask = '>>123456789' 
-  expect(defineWhichDirection(stringMask)).toEqual({
+test('extractDirection(">>123456789")', () => {
+  const mask = {
+    stringMask: '>>123456789' 
+  } 
+  const next = jest.fn();
+  extractDirection(mask, next)
+  expect(mask).toEqual({
     direction: "right",
-    maskStr: "123456789"
+    stringMask: "123456789"
   })
+  expect(next).toHaveBeenCalled()
 })
 
-test('defineWhichDirection("<<12345||678910")', () => {
-  const stringMask = '<<12345||678910' 
-  expect(defineWhichDirection(stringMask)).toEqual({
+test('extractDirection("<<12345||678910")', () => {
+  const mask = {
+    stringMask: '<<12345||678910' 
+  } 
+  const next = jest.fn();
+  extractDirection(mask, next)
+  expect(mask).toEqual({
     direction: "left",
-    maskStr: "12345||678910"
+    stringMask: "12345||678910"
   })
+  expect(next).toHaveBeenCalled()
 })
