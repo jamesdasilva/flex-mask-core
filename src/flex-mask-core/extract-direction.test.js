@@ -1,4 +1,4 @@
-import defineWhichDirection from './define-which-direction'
+import defineWhichDirection from './extract-direction'
 
 test('defineWhichDirection("123456789")', () => {
   const stringMask = '123456789' 
@@ -16,10 +16,10 @@ test('defineWhichDirection(">>123456789")', () => {
   })
 })
 
-test('defineWhichDirection("<<123456789")', () => {
-  const stringMask = '<<123456789' 
+test('defineWhichDirection("<<12345||678910")', () => {
+  const stringMask = '<<12345||678910' 
   expect(defineWhichDirection(stringMask)).toEqual({
     direction: "left",
-    maskStr: "123456789"
+    maskStr: "12345||678910"
   })
 })

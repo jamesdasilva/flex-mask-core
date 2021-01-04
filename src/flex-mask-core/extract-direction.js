@@ -1,4 +1,4 @@
-const defineWhichDirection = maskStr => {
+const extractDirection = maskStr => {
   let direction = 'right'
   let _maskStr = maskStr
 
@@ -17,4 +17,4 @@ const defineWhichDirection = maskStr => {
   return { direction, maskStr: _maskStr }
 }
 
-export default defineWhichDirection
+export default extractDirection
