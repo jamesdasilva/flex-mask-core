@@ -1,3 +1,3 @@
-import useMask from './react-hooks/use-mask'
+import makeMaskApplicator from './flex-mask-core/make-mask-applicator'
 
-export default useMask
+export default makeMaskApplicator
