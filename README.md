@@ -6,3 +6,14 @@
 - posfixo: 9,99,, %;
 - sentido da márcara para direita: >> OK
 - sentido da márcara para esquerda: << OK
+
+### Mask Model
+````
+{
+  prefix: string,
+  posfix: string,
+  direction: enum('right', 'left'),
+  masks: []
+}
+````
+

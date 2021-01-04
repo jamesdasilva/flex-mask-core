@@ -59,7 +59,7 @@ test('makeMaskApplicator("<<999.999,99")', () => {
   expect(changeValue('11111111')).toBe('111.111,11')
 })
 
-test('only makeMaskApplicator(">>999.999,99")', () => {
+test('makeMaskApplicator(">>999.999,99")', () => {
   const changeValue = makeMaskApplicator(">>999.999,99")
   expect(changeValue('')).toBe('')
   expect(changeValue('11')).toBe('11')
@@ -67,4 +67,18 @@ test('only makeMaskApplicator(">>999.999,99")', () => {
   expect(changeValue('1111')).toBe('111.1')
   expect(changeValue('111111')).toBe('111.111')
   expect(changeValue('11111111')).toBe('111.111,11')
+})
+
+test("makeMaskApplicator(''R$ ;999.999,99)", () => {
+  const changeValue = makeMaskApplicator("<<''R$ ;999.999,99")
+  expect(changeValue('')).toBe('')
+  expect(changeValue('11')).toBe('R$ 11')
+  expect(changeValue('111')).toBe('R$ 1,11')
+})
+
+test("makeMaskApplicator(''#;999)", () => {
+  const changeValue = makeMaskApplicator("''#;999")
+  expect(changeValue('')).toBe('')
+  expect(changeValue('11')).toBe('#11')
+  expect(changeValue('111')).toBe('#111')
 })

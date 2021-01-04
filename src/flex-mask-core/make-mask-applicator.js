@@ -1,18 +1,22 @@
 import extractMask from './extract-mask'
 import applyMask from './apply-mask'
+import applyPrefix from './apply-prefix'
 import expandQuantifiers from './expand-quantifiers'
 import extractDirection from './extract-direction'
+import extractPrefix from './extract-prefix'
 
 const reverseString = str => Array.from(str).reverse().join('')
 const getStringMask = (maskStr, direction = 'right') => direction === 'right' ? maskStr : reverseString(maskStr)
 
 const makeMaskApplicator = (maskStr) => {
-  const { direction, maskStr: mStr } = extractDirection(maskStr)
-  const expandedMask = expandQuantifiers(getStringMask(mStr, direction))
-  const mask = extractMask(expandedMask)
+  const expandedMask = expandQuantifiers(maskStr)
+  const { direction, maskStr: mStr } = extractDirection(expandedMask)
+  const { prefix, maskStr: mStr2 } = extractPrefix(mStr)
+  const mask = extractMask(getStringMask(mStr2, direction))
   return (newValue) => {
     let _newValue = getStringMask(newValue, direction)
-    return getStringMask(applyMask(mask, _newValue), direction)
+    let valueWithMask = getStringMask(applyMask(mask, _newValue), direction)
+    return applyPrefix(prefix, valueWithMask)
   }
 }
 export default makeMaskApplicator
