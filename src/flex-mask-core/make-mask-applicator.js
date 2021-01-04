@@ -8,7 +8,8 @@ const getStringMask = (maskStr, direction = 'right') => direction === 'right' ? 
 
 const makeMaskApplicator = (maskStr) => {
   const { direction, maskStr: mStr } = extractDirection(maskStr)
-  let mask = extractMask(expandQuantifiers(getStringMask(mStr, direction)))
+  const expandedMask = expandQuantifiers(getStringMask(mStr, direction))
+  const mask = extractMask(expandedMask)
   return (newValue) => {
     let _newValue = getStringMask(newValue, direction)
     return getStringMask(applyMask(mask, _newValue), direction)
