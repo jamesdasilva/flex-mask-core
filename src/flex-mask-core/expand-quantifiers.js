@@ -20,7 +20,7 @@ const getPureLength = stringMask => {
   return lengthWithCmd[stringMask][0].slice(1, lengthWithCmd[stringMask][0].length) 
 }
 
-const getTokenWithCmd = maskStr => maskStr?.match(/\>\d+;|\>\w+;|\>\*+;/) ?? []
+const getTokenWithCmd = maskStr => maskStr?.match(/\>\d+;|\>\w+;|\>.+;/) ?? []
 
 const getPureToken = (stringMask) => {
   tokenWithCmd[stringMask] = getTokenWithCmd(stringMask)
