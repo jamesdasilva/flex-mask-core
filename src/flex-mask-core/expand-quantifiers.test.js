@@ -69,7 +69,7 @@ test('expandQuantifiers("9^3>.999;") === "9.999.999.999"', () => {
   expect(expandQuantifiers(stringMask)).toBe('9.999.999.999')
 })
 
-test('only expandQuantifiers("999^3>.999;,99") === "999.999.999.999,99"', () => {
+test('expandQuantifiers("999^3>.999;,99") === "999.999.999.999,99"', () => {
   const stringMask = '999^3>.999;,99'
   expect(expandQuantifiers(stringMask)).toBe('999.999.999.999,99')
 })
