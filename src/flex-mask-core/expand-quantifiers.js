@@ -57,7 +57,6 @@ const insertExpandedTokenInStringMask = (stringMask, expandedToken, start, del) 
 }
 
 const expandQuantifiers = (context, next = () => {}) => {
-  
   const runner = (stringMask) => {
     const length = getPureLength(stringMask)
     if (!length) return stringMask
@@ -72,7 +71,7 @@ const expandQuantifiers = (context, next = () => {}) => {
 
     return runner(newStringMask)
   }
-
+  
   context.stringMask = runner(context.stringMask)
 
   next()

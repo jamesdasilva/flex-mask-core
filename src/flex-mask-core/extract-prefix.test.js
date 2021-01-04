@@ -1,22 +1,40 @@
 import extractPrefix from './extract-prefix'
 
 test("extractPrefix(''R$ ;999,99)", () => {
-  expect(extractPrefix("''R$ ;999,99")).toEqual({
+  const mask = {
+    stringMask: "''R$ ;999,99" 
+  } 
+  const next = jest.fn();
+  extractPrefix(mask, next)
+  expect(mask).toEqual({
     prefix: "R$ ",
-    maskStr: "999,99",
+    stringMask: "999,99"
   })
+  expect(next).toHaveBeenCalled()
 })
 
 test("extractPrefix(''# ;^5>9;)", () => {
-  expect(extractPrefix("''# ;^5>9;")).toEqual({
+  const mask = {
+    stringMask: "''# ;^5>9;" 
+  } 
+  const next = jest.fn();
+  extractPrefix(mask, next)
+  expect(mask).toEqual({
     prefix: "# ",
-    maskStr: "^5>9;",
+    stringMask: "^5>9;" 
   })
+  expect(next).toHaveBeenCalled()
 })
 
-test("extractPrefix(''#CPF ;^5>9;)", () => {
-  expect(extractPrefix("''#CPF ;^3>9;.^3>9;.^3>9;-^2>9;")).toEqual({
+test("extractPrefix(''#CPF ;^3>9;.^3>9;.^3>9;-^2>9;)", () => {
+  const mask = {
+    stringMask: "''#CPF ;^3>9;.^3>9;.^3>9;-^2>9;" 
+  } 
+  const next = jest.fn();
+  extractPrefix(mask, next)
+  expect(mask).toEqual({
     prefix: "#CPF ",
-    maskStr: "^3>9;.^3>9;.^3>9;-^2>9;",
+    stringMask: "^3>9;.^3>9;.^3>9;-^2>9;"
   })
+  expect(next).toHaveBeenCalled()
 })

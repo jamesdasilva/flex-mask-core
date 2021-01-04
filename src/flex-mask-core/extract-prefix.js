@@ -1,6 +1,6 @@
-const extractPrefix = (_maskStr) => {
+const extractPrefix = (context, next = () => {}) => {
   let prefix = ''
-  let maskStr = _maskStr
+  let maskStr = context.stringMask
 
   const prefixWithCmd = maskStr?.match(/''[^;]+;/) ?? []
   if (prefixWithCmd.length > 0) {
@@ -8,7 +8,10 @@ const extractPrefix = (_maskStr) => {
     maskStr = prefixWithCmd['input'].slice(prefixWithCmd['index'] + prefixWithCmd[0].length, prefixWithCmd['input'].length)
   }
 
-  return { prefix, maskStr }
+  context.prefix = prefix
+  context.stringMask = maskStr
+
+  next()
 }
 
 export default extractPrefix
