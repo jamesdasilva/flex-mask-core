@@ -1,4 +1,4 @@
-import { keyChars, regExTokens } from '../../key-chars'
+import { keyChars, regExTokens } from '../../../utils'
 
 const extractTokens = (stringMask) => {
 	const arrayMask = Array.from(stringMask)

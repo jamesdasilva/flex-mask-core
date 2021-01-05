@@ -1,5 +1,5 @@
 import extractMask from '../flex-mask-core/extract-mask'
-import applyMask from '../flex-mask-core/pipeline/pipes/mask/apply-mask'
+import applyMask from '../flex-mask-core/pipeline/apply-mask'
 
 const useMask = (maskStr) => {
   let value = ''

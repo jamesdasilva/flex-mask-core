@@ -5,7 +5,8 @@ const makeApplicator = (maskStr) => {
   const context = {
     stringMask: maskStr,
     prevHooks: [],
-    rearHooks: []
+    rearHooks: [],
+    applyHook: null
   }
 
   const pipeline = Pipeline()

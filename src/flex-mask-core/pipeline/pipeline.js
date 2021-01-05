@@ -1,5 +1,3 @@
-import applyMask from './apply-mask'
-
 const Pipeline = (...middlewares) => {
   const stack = middlewares
 
@@ -18,7 +16,7 @@ const Pipeline = (...middlewares) => {
       context.prevHooks[i](context)
     }
 
-    applyMask(context)
+    context.applyHook(context)
 
     for(let i = 0; i < context.rearHooks.length; i++) {
       context.rearHooks[i](context)

@@ -1,5 +1,5 @@
 import makeFilter from './make-filter'
-import { regExTokens, escapeChars, escapeCharsFn } from './key-chars'
+import { regExTokens, escapeChars } from '../../../utils'
 
 test('Date format - makeFilter() - "99/99/9999"', () => {
   const filter = makeFilter([
