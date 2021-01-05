@@ -1,15 +1,15 @@
 import applyMask from './apply-mask'
 
-test('applyMask()', () => {
+test('only applyMask()', () => {
   const context = {
     mask: [
       { token: '-', start: 2, end: 3 },
       { token: '+', start: 4, end: 5 },
     ],
-    value: '999'
+    value: '123'
   }
   applyMask(context)
-  expect(context.value).toBe('99-9')
+  expect(context.value).toBe('12-3')
 })
 
 test('applyMask()', () => {

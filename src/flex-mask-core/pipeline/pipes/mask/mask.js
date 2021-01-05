@@ -1,18 +1,20 @@
 import removeMask from './remove-mask'
 import applyMask from './apply-mask'
 import extractMask from './extract-mask'
-
-const reverseString = str => Array.from(str).reverse().join('')
+import reverseMaskStrIfApplicable from './reverse-maskstr-if-applicable'
+import reverseValueIfApplicable from './reverse-value-if-applicable'
 
 const Mask = (context) => {
 
-  context.stringMask = context.direction === 'right' ? context.stringMask : reverseString(context.stringMask)
+  context.stringMask = reverseMaskStrIfApplicable(context)
 
   context.mask = extractMask(context.stringMask)
 
-  context.prevHooks.push(removeMask)
+  context.prevHooks.push(removeMask, reverseValueIfApplicable)
 
   context.applyHook = applyMask
+
+  context.rearHooks.unshift(reverseValueIfApplicable)
 }
 
 export default Mask

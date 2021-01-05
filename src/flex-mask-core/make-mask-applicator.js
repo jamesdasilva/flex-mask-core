@@ -17,7 +17,7 @@ const makeApplicator = (maskStr) => {
     Prefix,
     Mask
   )
-
+  
   pipeline.prepare(context)
 
   return (newValue) => {

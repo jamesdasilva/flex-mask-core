@@ -1,10 +1,12 @@
 import Mask from './mask'
 import removeMask from './remove-mask'
 import applyMask from './apply-mask'
+import reverseValueIfApplicable from './reverse-value-if-applicable'
 
 const createContext = () => ({
   direction: 'right',
-  prevHooks: []
+  prevHooks: [],
+  rearHooks: []
 })
 
 let context
@@ -26,7 +28,8 @@ test('Date format - Mask("99/99/9999")', () => {
       { token: '/', start: 2 },
       { token: '/', start: 5 },
     ],
-    prevHooks: [ removeMask ],
+    prevHooks: [ removeMask, reverseValueIfApplicable ],
+    rearHooks: [ reverseValueIfApplicable ],
     applyHook: applyMask
   })
 })
@@ -45,7 +48,8 @@ test('Mask("(99) 9999-9999")', () => {
       { token: ') ', start: 3 },
       { token: '-', start: 9 },
     ],
-    prevHooks: [ removeMask ],
+    prevHooks: [ removeMask, reverseValueIfApplicable ],
+    rearHooks: [ reverseValueIfApplicable ],
     applyHook: applyMask
   })
 })
@@ -59,7 +63,8 @@ test('Mask("9999999")', () => {
     stringMask: "9999999",
     direction: 'right',
     mask: [],
-    prevHooks: [ removeMask ],
+    prevHooks: [ removeMask, reverseValueIfApplicable ],
+    rearHooks: [ reverseValueIfApplicable ],
     applyHook: applyMask
   })
 })
@@ -74,7 +79,8 @@ test('Mask("99999AAAA")', () => {
     stringMask: "99999AAAA",
     direction: 'right',
     mask: [],
-    prevHooks: [ removeMask ],
+    prevHooks: [ removeMask, reverseValueIfApplicable ],
+    rearHooks: [ reverseValueIfApplicable ],
     applyHook: applyMask
   })
 })
@@ -92,7 +98,8 @@ test('Mask("99-9//A")', () => {
       { token: '-', start: 2 },
       { token: '//', start: 4 },
     ],
-    prevHooks: [ removeMask ],
+    prevHooks: [ removeMask, reverseValueIfApplicable ],
+    rearHooks: [ reverseValueIfApplicable ],
     applyHook: applyMask
   })
 })
@@ -109,7 +116,8 @@ test('Mask("99***99-AAA")', () => {
     mask: [
       { token: '-', start: 7 },
     ],
-    prevHooks: [ removeMask ],
+    prevHooks: [ removeMask, reverseValueIfApplicable ],
+    rearHooks: [ reverseValueIfApplicable ],
     applyHook: applyMask
   })
 })
@@ -127,7 +135,8 @@ test('Mask("99-9+(9")', () => {
       { token: '-', start: 2 },
       { token: '+(', start: 4 },
     ],
-    prevHooks: [ removeMask ],
+    prevHooks: [ removeMask, reverseValueIfApplicable ],
+    rearHooks: [ reverseValueIfApplicable ],
     applyHook: applyMask
   })
 })
@@ -147,7 +156,8 @@ test('Mask("$%99-9+(9@#")', () => {
       { token: '+(', start: 6 },
       { token: '@#', start: 9 },
     ],
-    prevHooks: [ removeMask ],
+    prevHooks: [ removeMask, reverseValueIfApplicable ],
+    rearHooks: [ reverseValueIfApplicable ],
     applyHook: applyMask
   })
 })
