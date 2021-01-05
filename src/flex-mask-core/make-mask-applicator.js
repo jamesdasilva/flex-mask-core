@@ -52,10 +52,10 @@ const makeMaskApplicator = (maskStr) => {
   // pre processamento
   expandQuantifiers(context)
   extractDirection(context)
-  const get = mStr => getStringMask(mStr, context.direction)
   extractPrefix(context)
-  const mask = extractMask(get(context.stringMask))
-  const _applyMask = mStr => applyMask(mask, mStr)
+  extractMask(context)
+  const get = mStr => getStringMask(mStr, context.direction)
+  const _applyMask = mStr => applyMask(context.mask, mStr)
   const _applyPrefix = mStr => applyPrefix(context.prefix, mStr)
   return (newValue) => {
     // processamento
