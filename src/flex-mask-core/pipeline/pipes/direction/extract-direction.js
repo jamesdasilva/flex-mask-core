@@ -1,6 +1,6 @@
-const extractDirection = (context, next = () => {}) => {
+const extractDirection = (maskStr) => {
   let direction = 'right'
-  let _maskStr = context.stringMask
+  let _maskStr = maskStr
 
   const maskStrWithRightDirection = _maskStr?.match(/\>\>.+/) ?? []
   if (maskStrWithRightDirection.length > 0) {
@@ -14,10 +14,10 @@ const extractDirection = (context, next = () => {}) => {
     _maskStr = maskStrWithLeftDirection[0].slice(2, maskStrWithLeftDirection[0].length)
   }
   
-  context.direction = direction
-  context.stringMask = _maskStr
-
-  next()
+  return {
+    direction,
+    stringMask: _maskStr
+  }
 }
 
 export default extractDirection
