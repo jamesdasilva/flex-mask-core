@@ -1,42 +1,32 @@
-import applyMask from './apply-mask'
-import applyPrefix from './apply-prefix'
-import removePrefix from './remove-prefix'
-import removeMask from './remove-mask'
-import Preparer, { expandQuantifiers, extractMask, extractDirection, extractPrefix } from './preparer'
+import Pipeline, { Quantifiers, Mask, Direction, Prefix } from './pipeline'
 
-const reverseString = str => Array.from(str).reverse().join('')
+const makeApplicator = (maskStr) => {
 
-const getStringMask = (maskStr, direction = 'right') => direction === 'right' ? maskStr : reverseString(maskStr)
-
-const makeMaskApplicator = (maskStr) => {
   const context = {
-    stringMask: maskStr
+    stringMask: maskStr,
+    prevHooks: [],
+    rearHooks: []
   }
 
-  const preparer = Preparer()
-  preparer.push(
-    expandQuantifiers,
-    extractDirection,
-    extractPrefix,
-    extractMask
+  const pipeline = Pipeline()
+
+  pipeline.push(
+    Quantifiers,
+    Direction,
+    Prefix,
+    Mask
   )
 
-  preparer.execute(context)
-
-  const get = mStr => getStringMask(mStr, context.direction)
-  const _applyMask = mStr => applyMask(context.mask, mStr)
-  const _applyPrefix = mStr => applyPrefix(context.prefix, mStr)
+  pipeline.prepare(context)
 
   return (newValue) => {
-    // processamento
-    const valueNoPrefix = removePrefix(newValue, context.prefix)
-    const valueNoPrefixNoMask = removeMask(valueNoPrefix)
-    const valueNoPrefixNoMaskI = get(valueNoPrefixNoMask)
-    const valueNoPrefixWithMaskI = _applyMask(valueNoPrefixNoMaskI)
-    const valueNoPrefixWithMask = get(valueNoPrefixWithMaskI)
-    const valueWithPrefixAndMask = _applyPrefix(valueNoPrefixWithMask)
-    return valueWithPrefixAndMask
+
+    context.value = newValue
+
+    pipeline.shoot(context)
+
+    return context.value
   }
 }
 
-export default makeMaskApplicator
+export default makeApplicator

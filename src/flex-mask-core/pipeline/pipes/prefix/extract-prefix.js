@@ -1,3 +1,6 @@
+import removePrefix from './remove-prefix'
+import applyPrefix from './apply-prefix'
+
 const extractPrefix = (context, next = () => {}) => {
   let prefix = ''
   let maskStr = context.stringMask
@@ -10,6 +13,8 @@ const extractPrefix = (context, next = () => {}) => {
 
   context.prefix = prefix
   context.stringMask = maskStr
+  context.prevHooks.push(removePrefix)
+  context.rearHooks.push(applyPrefix)
 
   next()
 }

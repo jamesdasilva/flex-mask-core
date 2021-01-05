@@ -1,6 +1,6 @@
 import makeMaskApplicator from './make-mask-applicator'
 
-test('only makeMaskApplicator("999/9")', () => {
+test('makeMaskApplicator("999/9")', () => {
   const changeValue = makeMaskApplicator('999/9')
   expect(changeValue('8888')).toBe('888/8')
 })
