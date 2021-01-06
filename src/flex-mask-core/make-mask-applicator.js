@@ -1,4 +1,4 @@
-import Pipeline, { Quantifiers, Mask, Direction, Prefix } from './pipeline'
+import Pipeline, { Quantifiers, Mask, Direction, Prefix, Tokens, Filter } from './pipeline'
 
 const makeApplicator = (maskStr) => {
 
@@ -15,7 +15,9 @@ const makeApplicator = (maskStr) => {
     Quantifiers,
     Direction,
     Prefix,
-    Mask
+    Tokens,
+    Mask,
+    Filter,
   )
   
   pipeline.prepare(context)

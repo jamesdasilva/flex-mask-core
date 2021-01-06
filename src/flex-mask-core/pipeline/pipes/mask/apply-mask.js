@@ -1,6 +1,6 @@
 const applyMask = (context) => {
 
-  let valueWithMask = context.value
+  let valueWithMask = context.value 
 
   for(let i = 0; i < context.mask.length; i++) {
 
@@ -13,6 +13,7 @@ const applyMask = (context) => {
       valueWithMask = valueArr.join('')
     }
   }
+
   context.value = valueWithMask
 }
 

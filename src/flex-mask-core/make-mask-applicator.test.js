@@ -51,13 +51,14 @@ test('International phone format - makeMaskApplicator("+55 (99) 9 9999-9999")', 
   expect(changeValue('03202508679')).toBe('+55 (03) 2 0250-8679')
 })
 
-test('makeMaskApplicator("<<999.999,99")', () => {
+test('onlyteste makeMaskApplicator("<<999.999,99")', () => {
   const changeValue = makeMaskApplicator("<<999.999,99")
   expect(changeValue('')).toBe('')
   expect(changeValue('11')).toBe('11')
   expect(changeValue('111')).toBe('1,11')
   expect(changeValue('111111')).toBe('1.111,11')
   expect(changeValue('11111111')).toBe('111.111,11')
+  expect(changeValue('111.111,11')).toBe('111.111,11')
   expect(changeValue('111.111,11')).toBe('111.111,11')
 })
 

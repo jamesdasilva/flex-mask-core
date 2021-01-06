@@ -11,4 +11,5 @@ const makeFilter = (mask) => {
   }
   return new RegExp(filter.join('|'))
 }
+
 export default makeFilter

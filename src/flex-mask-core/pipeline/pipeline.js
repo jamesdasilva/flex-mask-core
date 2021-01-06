@@ -15,7 +15,7 @@ const Pipeline = (...middlewares) => {
     for(let i = 0; i < context.prevHooks.length; i++) {
       context.prevHooks[i](context)
     }
-
+    // console.log(context)
     context.applyHook(context)
 
     for(let i = 0; i < context.rearHooks.length; i++) {

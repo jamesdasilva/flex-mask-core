@@ -1,4 +1,4 @@
-import { keyChars, regExTokens } from '../../../utils'
+import { keyChars, regExTokens, escapeCharsFn } from '../../../utils'
 
 const extractTokens = (stringMask) => {
 	const arrayMask = Array.from(stringMask)
@@ -14,7 +14,7 @@ const extractTokens = (stringMask) => {
 			if(!isToken) {
         token.end = i
         token.keyChar = true
-        token.regEx = token.keyChar ? `${regExTokens[token.token[0]]}` : token.token
+        token.regEx = token.keyChar ? `${regExTokens[token.token[0]]}` : escapeCharsFn(token.token)
         tokens.push(token)
         token = {
           token: '',
@@ -27,7 +27,7 @@ const extractTokens = (stringMask) => {
       if(isToken || (i > 0 && arrayMask[i] !== prevChar)) {
         token.end = i
         token.keyChar = isToken ? false : true
-        token.regEx = token.keyChar ? `${regExTokens[token.token[0]]}` : token.token
+        token.regEx = token.keyChar ? `${regExTokens[token.token[0]]}` : escapeCharsFn(token.token)
         tokens.push(token)
         token = {
           token: '',
