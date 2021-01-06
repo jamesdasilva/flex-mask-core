@@ -1,16 +1,11 @@
 import makeFilter from './make-filter'
-
-const restoreValueIfInvalid = (context) => {
-
-  context.valueIsValid = false
-  
-  if(context.filter.test(context.value)) context.valueIsValid = true
-}
+import trucateValue from './trucate-value'
 
 const Filter = context => {
   
   context.filter = makeFilter(context.tokens)
-  context.rearHooks.unshift(restoreValueIfInvalid)
+
+  context.rearHooks.unshift(trucateValue)
 }
 
 export default Filter

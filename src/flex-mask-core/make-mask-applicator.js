@@ -23,7 +23,7 @@ const makeApplicator = (maskStr) => {
   pipeline.prepare(context)
 
   return (newValue) => {
-
+    
     context.value = newValue
 
     pipeline.shoot(context)
