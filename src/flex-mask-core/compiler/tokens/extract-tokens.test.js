@@ -1,5 +1,5 @@
 import extractTokens from './extract-tokens'
-import { regExTokens, escapeChars, escapeCharsFn } from '../../../utils'
+import { regExTokens, escapeChars, escapeCharsFn } from '../../helpers/utils'
 
 test('Date 99/99/9999)', () => {
   const mask = extractTokens('99/99/9999')

@@ -1,5 +1,5 @@
 import makeFilter from './make-filter'
-import { regExTokens, escapeChars } from '../../../utils'
+import { regExTokens, escapeChars } from '../../helpers/utils'
 
 describe('makeFilter fn', () => {
 

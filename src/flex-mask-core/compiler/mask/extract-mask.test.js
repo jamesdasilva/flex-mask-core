@@ -1,5 +1,5 @@
 import extractMask from './extract-mask'
-import { regExTokens } from '../../../utils'
+import { regExTokens } from '../../helpers/utils'
 
 test('Date 99/99/9999)', () => {
 

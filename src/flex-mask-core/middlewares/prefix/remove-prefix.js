@@ -1,4 +1,4 @@
-import { escapeCharsFn } from '../../../utils'
+import { escapeCharsFn } from '../../helpers/utils'
 
 const removePrefix = (context) => {
   context.value = (new RegExp(`^${escapeCharsFn(context.prefix)}`)).test(context.value) 

@@ -1,17 +1,27 @@
-const Pipeline = (...middlewares) => {
-  const stack = middlewares
+import Tokens from './tokens'
+import Mask from './mask'
+import Filter from './filter'
 
-  const push = (...middlewares) => {
+const MaskCompiler = () => {
+  const stack = []
+
+  const use = (...middlewares) => {
     stack.push(...middlewares)
   }
 
-  const prepare = (context) => {
+  const compile = (context) => {
+
     for(let i = 0; i < stack.length; i++) {
       stack[i](context)
     }
+
+    Tokens(context)
+    Filter(context)
+    Mask(context)
   }
 
-  const shoot = (context) => {
+  const exec = (context) => {
+
     for(let i = 0; i < context.prevHooks.length; i++) {
       context.prevHooks[i](context)
     }
@@ -23,7 +33,7 @@ const Pipeline = (...middlewares) => {
     }
   }
 
-  return { push, prepare, shoot }
+  return { use, compile, exec }
 }
 
-export default Pipeline
+export default MaskCompiler

@@ -2,7 +2,7 @@ import Mask from './mask'
 import removeMask from './remove-mask'
 import applyMask from './apply-mask'
 import reverseValueIfApplicable from './reverse-value-if-applicable'
-import { regExTokens } from '../../../utils'
+import { regExTokens } from '../../helpers/utils'
 import extractTokens from '../tokens/extract-tokens'
 
 const createContext = () => ({

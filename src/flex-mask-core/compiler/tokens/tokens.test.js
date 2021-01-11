@@ -1,5 +1,5 @@
 import Tokens from './tokens'
-import { regExTokens, escapeChars, escapeCharsFn } from '../../../utils'
+import { regExTokens, escapeChars, escapeCharsFn } from '../../helpers/utils'
 
 const createContext = () => ({
   direction: 'right'

@@ -1,4 +1,4 @@
-import reverseString from '../../../helpers/reverse-string'
+import reverseString from '../../helpers/reverse-string'
 
 const reverseMaskStrIfApplicable = context => {
   return context.direction === 'right' ? context.stringMask : reverseString(context.stringMask)

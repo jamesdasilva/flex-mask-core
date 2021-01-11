@@ -1,4 +1,4 @@
-import reverseString from '../../../helpers/reverse-string'
+import reverseString from '../../helpers/reverse-string'
 
 const reverseValueIfApplicable = context => {
   context.value = context.direction === 'right' ? context.value : reverseString(context.value) 

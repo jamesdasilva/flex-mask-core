@@ -1,3 +1,3 @@
-import makeMaskApplicator from './flex-mask-core/make-mask-applicator'
+import createMaskApplicator from './flex-mask-core/api/create-mask-applicator'
 
-export default makeMaskApplicator
+export default createMaskApplicator

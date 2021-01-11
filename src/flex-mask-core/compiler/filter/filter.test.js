@@ -1,5 +1,5 @@
 import Filter from './filter'
-import { regExTokens, escapeChars } from '../../../utils'
+import { regExTokens, escapeChars } from '../../helpers/utils'
 
 describe('Filter: creates a filter (regexp) in the context to prevent updating invalid values', () => {
 

@@ -1,4 +1,4 @@
-import { keyChars, regExTokens, escapeCharsFn } from '../../../utils'
+import { keyChars, regExTokens, escapeCharsFn } from '../../helpers/utils'
 
 const extractTokens = (stringMask) => {
 	const arrayMask = Array.from(stringMask)
