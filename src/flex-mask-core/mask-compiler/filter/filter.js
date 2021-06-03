@@ -5,7 +5,7 @@ const Filter = context => {
   
   context.filter = makeFilter(context.tokens)
 
-  context.rearHooks.unshift(trucateValue)
+  context.afterExec.unshift(trucateValue)
 }
 
 export default Filter

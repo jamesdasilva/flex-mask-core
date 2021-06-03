@@ -7,8 +7,8 @@ import extractTokens from '../tokens/extract-tokens'
 
 const createContext = () => ({
   direction: 'right',
-  prevHooks: [],
-  rearHooks: []
+  beforeExec: [],
+  afterExec: []
 })
 
 let context
@@ -42,9 +42,9 @@ test('Date 99/99/9999)', () => {
       { token: '/', start: 2 },
       { token: '/', start: 5 },
     ],
-    prevHooks: [ removeMask, reverseValueIfApplicable ],
-    rearHooks: [ reverseValueIfApplicable ],
-    applyHook: applyMask
+    beforeExec: [ removeMask, reverseValueIfApplicable ],
+    afterExec: [ reverseValueIfApplicable ],
+    exec: applyMask
   })
 })
 
@@ -76,9 +76,9 @@ test('Phone (99) 9999-9999")', () => {
       { token: ') ', start: 3 },
       { token: '-', start: 9 },
     ],
-    prevHooks: [ removeMask, reverseValueIfApplicable ],
-    rearHooks: [ reverseValueIfApplicable ],
-    applyHook: applyMask
+    beforeExec: [ removeMask, reverseValueIfApplicable ],
+    afterExec: [ reverseValueIfApplicable ],
+    exec: applyMask
   })
 })
 
@@ -93,9 +93,9 @@ test('No mask 99999AAAA")', () => {
     direction: 'right',
     tokens: [],
     mask: [],
-    prevHooks: [ removeMask, reverseValueIfApplicable ],
-    rearHooks: [ reverseValueIfApplicable ],
-    applyHook: applyMask
+    beforeExec: [ removeMask, reverseValueIfApplicable ],
+    afterExec: [ reverseValueIfApplicable ],
+    exec: applyMask
   })
 })
 
@@ -124,8 +124,8 @@ test('Custom mask 99-9+(9', () => {
       { token: '-', start: 2 },
       { token: '+(', start: 4 },
     ],
-    prevHooks: [ removeMask, reverseValueIfApplicable ],
-    rearHooks: [ reverseValueIfApplicable ],
-    applyHook: applyMask
+    beforeExec: [ removeMask, reverseValueIfApplicable ],
+    afterExec: [ reverseValueIfApplicable ],
+    exec: applyMask
   })
 })

@@ -3,8 +3,8 @@ import removePrefix from './remove-prefix'
 import applyPrefix from './apply-prefix'
 
 const createContext = () => ({
-  prevHooks: [],
-  rearHooks: []
+  beforeExec: [],
+  afterExec: []
 })
 
 let context
@@ -15,7 +15,7 @@ beforeEach(() => {
 
 describe('Prefix(context) => context - Pipe Spec', () => {
 
-  test("{ stringMask: ''R$ ;999,99 } => { prefix: 'R$ ', stringMask: '999,99', prevHooks: [ fn ], rearHooks: [ fn ] }", () => {
+  test("{ stringMask: ''R$ ;999,99 } => { prefix: 'R$ ', stringMask: '999,99', beforeExec: [ fn ], afterExec: [ fn ] }", () => {
 
     context.stringMask = "''R$ ;999,99"
 
@@ -24,12 +24,12 @@ describe('Prefix(context) => context - Pipe Spec', () => {
     expect(context).toEqual({
       prefix: "R$ ",
       stringMask: "999,99",
-      prevHooks: [ removePrefix ],
-      rearHooks: [ applyPrefix ]
+      beforeExec: [ removePrefix ],
+      afterExec: [ applyPrefix ]
     })
   })
 
-  test("{ stringMask: ''# ;^5>9; } => { prefix: '# ', stringMask: '^5>9;', prevHooks: [ fn ], rearHooks: [ fn ] }", () => {
+  test("{ stringMask: ''# ;^5>9; } => { prefix: '# ', stringMask: '^5>9;', beforeExec: [ fn ], afterExec: [ fn ] }", () => {
 
     context.stringMask = "''# ;^5>9;"
 
@@ -38,12 +38,12 @@ describe('Prefix(context) => context - Pipe Spec', () => {
     expect(context).toEqual({
       prefix: "# ",
       stringMask: "^5>9;",
-      prevHooks: [ removePrefix ],
-      rearHooks: [ applyPrefix ]
+      beforeExec: [ removePrefix ],
+      afterExec: [ applyPrefix ]
     })
   })
 
-  test("{ stringMask: ''R$ ;^3>9;.^3>9;.^3>9;-^2>9; } => { prefix: '#CPF ', stringMask: ^3>9;.^3>9;.^3>9;-^2>9;, prevHooks: [ fn ], rearHooks: [ fn ] }", () => {
+  test("{ stringMask: ''R$ ;^3>9;.^3>9;.^3>9;-^2>9; } => { prefix: '#CPF ', stringMask: ^3>9;.^3>9;.^3>9;-^2>9;, beforeExec: [ fn ], afterExec: [ fn ] }", () => {
 
     context.stringMask = "''#CPF ;^3>9;.^3>9;.^3>9;-^2>9;"
 
@@ -52,8 +52,8 @@ describe('Prefix(context) => context - Pipe Spec', () => {
     expect(context).toEqual({
       prefix: "#CPF ",
       stringMask: "^3>9;.^3>9;.^3>9;-^2>9;",
-      prevHooks: [ removePrefix ],
-      rearHooks: [ applyPrefix ]
+      beforeExec: [ removePrefix ],
+      afterExec: [ applyPrefix ]
     })
   })
 })

@@ -16,8 +16,8 @@ const Prefix = context => {
 
   context.prefix = prefix
   context.stringMask = maskStr
-  context.prevHooks.push(removePrefix)
-  context.rearHooks.push(applyPrefix)
+  context.beforeExec.push(removePrefix)
+  context.afterExec.push(applyPrefix)
 }
 
 export default Prefix

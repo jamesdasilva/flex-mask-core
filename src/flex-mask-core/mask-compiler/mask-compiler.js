@@ -20,20 +20,7 @@ const MaskCompiler = () => {
     Mask(context)
   }
 
-  const exec = (context) => {
-
-    for(let i = 0; i < context.prevHooks.length; i++) {
-      context.prevHooks[i](context)
-    }
-    // console.log(context)
-    context.applyHook(context)
-
-    for(let i = 0; i < context.rearHooks.length; i++) {
-      context.rearHooks[i](context)
-    }
-  }
-
-  return { use, compile, exec }
+  return { use, compile }
 }
 
 export default MaskCompiler

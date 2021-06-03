@@ -40,6 +40,36 @@ test('applyMask()', () => {
   expect(context.value).toBe('$%99-9+(9')
 })
 
+test('applyMask(CNPJ)', () => {
+  const context = {
+    mask: [
+      { token: '.', start: 2, end: 3 },
+      { token: '.', start: 6, end: 7 },
+      { token: '/', start: 10, end: 11 },
+      { token: '-', start: 15, end: 18 },
+    ],
+    value: '99999999999999'
+  } 
+
+  applyMask(context)
+  expect(context.value).toBe('99.999.999/9999-99')
+})
+
+test('applyMask(CNPJ2)', () => {
+  const context = {
+    mask: [
+      { token: '.', start: 2, end: 3 },
+      { token: '.', start: 6, end: 7 },
+      { token: '/', start: 10, end: 11 },
+      { token: '-', start: 15, end: 18 },
+    ],
+    value: '999999'
+  } 
+
+  applyMask(context)
+  expect(context.value).toBe('99.999.9')
+})
+
 test('applyMask(999.999.999-9)', () => {
   const context = {
     mask: [

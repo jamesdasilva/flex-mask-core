@@ -7,11 +7,11 @@ const Mask = (context) => {
 
   context.mask = extractMask(context.tokens)
 
-  context.prevHooks.push(removeMask, reverseValueIfApplicable)
+  context.beforeExec.push(removeMask, reverseValueIfApplicable)
 
-  context.applyHook = applyMask
+  context.exec = applyMask
 
-  context.rearHooks.unshift(reverseValueIfApplicable)
+  context.afterExec.unshift(reverseValueIfApplicable)
 }
 
 export default Mask

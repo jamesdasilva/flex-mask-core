@@ -15,7 +15,7 @@ describe('Filter: creates a filter (regexp) in the context to prevent updating i
           { token: '/', start: 5, end: 6, keyChar: false, regEx: escapeChars['/'] },
           { token: '9999', start: 6, end: 10, keyChar: true, regEx: regExTokens['9'] }
         ],
-        rearHooks: []
+        afterExec: []
       }
 
       Filter(context)
@@ -35,7 +35,7 @@ describe('Filter: creates a filter (regexp) in the context to prevent updating i
           { token: '-', start: 11, end: 12, keyChar: false, regEx: escapeChars['-'] },
           { token: '99', start: 12, end: 14, keyChar: true, regEx: regExTokens['9'] },
         ],
-        rearHooks: []
+        afterExec: []
       }
 
       Filter(context)
@@ -55,7 +55,7 @@ describe('Filter: creates a filter (regexp) in the context to prevent updating i
           { token: '-', start: 11, end: 12, keyChar: false, regEx: escapeChars['-'] },
           { token: '99', start: 12, end: 14, keyChar: true, regEx: regExTokens['9'] },
         ],
-        rearHooks: []
+        afterExec: []
       }
 
       Filter(context)
