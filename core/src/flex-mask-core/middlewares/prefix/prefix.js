@@ -1,16 +1,20 @@
 import removePrefix from './remove-prefix'
 import applyPrefix from './apply-prefix'
 
+const removeCmd = prefixWithCmd => prefixWithCmd.slice(2, prefixWithCmd.length - 1)
+
 const Prefix = context => {
   let prefix = ''
   let maskStr = context.stringMask
 
-  const prefixWithCmd = maskStr?.match(/''[^;]+;/) ?? []
+  const prefixWithCmdArray = maskStr?.match(/''[^;]+;/) ?? []
+  const hasPrefix = prefixWithCmdArray.length > 0
 
-  if (prefixWithCmd.length > 0) {
-
-    prefix = prefixWithCmd[0].slice(2, prefixWithCmd[0].length - 1)
-    maskStr = prefixWithCmd['input'].slice(prefixWithCmd['index'] + prefixWithCmd[0].length, prefixWithCmd['input'].length)
+  if (hasPrefix) {
+    const prefixWithCmd = prefixWithCmdArray[0]
+    prefix = removeCmd(prefixWithCmd)
+    const start = prefixWithCmdArray['index']
+    maskStr = maskStr.slice(start + prefixWithCmd.length, maskStr.length)
   }
 
   context.prefix = prefix

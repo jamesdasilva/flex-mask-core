@@ -74,7 +74,7 @@ test('onlytest createMaskApplicator(">>999.999,99")', () => {
 })
 
 test("createMaskApplicator(''R$ ;999.999,99)", () => {
-  const changeValue = createMaskApplicator("<<''R$ ;999.999,99")
+  const changeValue = createMaskApplicator("''R$ ;<<999.999,99")
   expect(changeValue('').value).toBe('')
   expect(changeValue('11').value).toBe('R$ 11')
   expect(changeValue('111').value).toBe('R$ 1,11')
