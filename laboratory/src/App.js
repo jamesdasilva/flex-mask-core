@@ -10,7 +10,7 @@ function App() {
   const { inputRef: cpfRef } = useMask("''CPF: ;^3>9;.^3>9;.^3>9;-99")
   const { inputRef: phoneRef } = useMask("''TEL. ;(99) ^5>9; ^4>9;")
   const { inputRef: dateRef } = useMask("''DATA ;99/99/^4>9;")
-  const { inputRef: moneyRef } = useMask("''R$ ;<<9.999.999,99")
+  const { inputRef: moneyRef } = useMask("''PREFIX ;<<9.999.999,99")
 
   return (
     <form className='demo-form' onSubmit={e => console.log('submit form')}>
