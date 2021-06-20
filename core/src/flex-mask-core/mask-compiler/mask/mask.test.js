@@ -1,9 +1,7 @@
 import Mask from './mask'
 import removeMask from './remove-mask'
 import applyMask from './apply-mask'
-import reverseValueIfApplicable from './reverse-value-if-applicable'
 import { regExTokens } from '../../helpers/utils'
-import extractTokens from '../tokens/extract-tokens'
 
 const createContext = () => ({
   direction: 'right',
@@ -42,8 +40,8 @@ test('Date 99/99/9999)', () => {
       { token: '/', start: 2 },
       { token: '/', start: 5 },
     ],
-    beforeExec: [ removeMask, reverseValueIfApplicable ],
-    afterExec: [ reverseValueIfApplicable ],
+    beforeExec: [ removeMask ],
+    afterExec: [],
     exec: applyMask
   })
 })
@@ -76,8 +74,8 @@ test('Phone (99) 9999-9999")', () => {
       { token: ') ', start: 3 },
       { token: '-', start: 9 },
     ],
-    beforeExec: [ removeMask, reverseValueIfApplicable ],
-    afterExec: [ reverseValueIfApplicable ],
+    beforeExec: [ removeMask ],
+    afterExec: [],
     exec: applyMask
   })
 })
@@ -93,8 +91,8 @@ test('No mask 99999AAAA")', () => {
     direction: 'right',
     tokens: [],
     mask: [],
-    beforeExec: [ removeMask, reverseValueIfApplicable ],
-    afterExec: [ reverseValueIfApplicable ],
+    beforeExec: [ removeMask ],
+    afterExec: [],
     exec: applyMask
   })
 })
@@ -124,8 +122,8 @@ test('Custom mask 99-9+(9', () => {
       { token: '-', start: 2 },
       { token: '+(', start: 4 },
     ],
-    beforeExec: [ removeMask, reverseValueIfApplicable ],
-    afterExec: [ reverseValueIfApplicable ],
+    beforeExec: [ removeMask ],
+    afterExec: [ ],
     exec: applyMask
   })
 })

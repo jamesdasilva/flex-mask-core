@@ -6,10 +6,10 @@ function App() {
 
   count += 1
   console.log('count ', count)
-  const { inputRef: credCardRef, getValue: getCredCard } = useMask("''R$ ;9999 9999 9999 9999", value => !!value)
-  const { inputRef: cpfRef } = useMask("999.999.999-99")
-  const { inputRef: phoneRef } = useMask("(99) 99999 9999")
-  const { inputRef: dateRef } = useMask("99/99/9999")
+  const { inputRef: credCardRef, getValue: getCredCard } = useMask("''CARD ;^4>9; ^4>9; ^4>9; ^4>9;", value => !!value)
+  const { inputRef: cpfRef } = useMask("''CPF: ;^3>9;.^3>9;.^3>9;-99")
+  const { inputRef: phoneRef } = useMask("''TEL. ;(99) ^5>9; ^4>9;")
+  const { inputRef: dateRef } = useMask("''DATA ;99/99/^4>9;")
   const { inputRef: moneyRef } = useMask("''R$ ;<<9.999.999,99")
 
   return (
@@ -23,7 +23,7 @@ function App() {
         <label>Cartão de crédito:</label>
         <input 
           ref={credCardRef}
-          type="text" 
+          type="text"
           name="nomask" ></input>
       </div>
       

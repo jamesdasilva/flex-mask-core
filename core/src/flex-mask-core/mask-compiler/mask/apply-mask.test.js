@@ -2,6 +2,7 @@ import applyMask from './apply-mask'
 
 test('only applyMask()', () => {
   const context = {
+    direction: 'right',
     mask: [
       { token: '-', start: 2, end: 3 },
       { token: '+', start: 4, end: 5 },
@@ -14,6 +15,7 @@ test('only applyMask()', () => {
 
 test('applyMask()', () => {
   const context = {
+    direction: 'right',
     mask: [
       { token: '-', start: 2, end: 3 },
       { token: '+(', start: 4, end: 6 },
@@ -27,6 +29,7 @@ test('applyMask()', () => {
 
 test('applyMask()', () => {
   const context = {
+    direction: 'right',
     mask: [
       { token: '$%', start: 0, end: 2 },
       { token: '-', start: 4, end: 5 },
@@ -42,21 +45,23 @@ test('applyMask()', () => {
 
 test('applyMask(CNPJ)', () => {
   const context = {
+    direction: 'right',
     mask: [
       { token: '.', start: 2, end: 3 },
       { token: '.', start: 6, end: 7 },
       { token: '/', start: 10, end: 11 },
       { token: '-', start: 15, end: 18 },
     ],
-    value: '99999999999999'
+    value: '99999999999999' // 14 
   } 
 
   applyMask(context)
-  expect(context.value).toBe('99.999.999/9999-99')
+  expect(context.value).toBe('99.999.999/9999-99') // 18
 })
 
 test('applyMask(CNPJ2)', () => {
   const context = {
+    direction: 'right',
     mask: [
       { token: '.', start: 2, end: 3 },
       { token: '.', start: 6, end: 7 },
@@ -72,6 +77,7 @@ test('applyMask(CNPJ2)', () => {
 
 test('applyMask(999.999.999-9)', () => {
   const context = {
+    direction: 'right',
     mask: [
       { token: '.', start: 3, end: 4 },
       { token: '.', start: 7, end: 8 },
