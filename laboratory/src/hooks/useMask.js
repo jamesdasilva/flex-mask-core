@@ -25,6 +25,7 @@ const useMask = (maskStr) => {
   }
 
   const refreshInput = ({ target }) => {
+    const clean = target.value.length === 0
     const notExceededMaxLimit = target.value.length <= (maxLimit + prefix.length)
     const emptyField = !prevValue
     const cursorAfterPrefix = inputRef.current.selectionStart >= prefix.length
@@ -41,7 +42,11 @@ const useMask = (maskStr) => {
       // setCursorPosition(inputRef, value.length - secondeHalfLengthRef.current)
       prevValue = value
     } else {
-      inputRef.current.value = prevValue
+      if(clean) {
+        inputRef.current.value = ''
+        prevValue = ''
+      } else
+        inputRef.current.value = prevValue
       // setCursorPosition(inputRef, prevValue.length - secondeHalfLengthRef.current)
     }
   }
