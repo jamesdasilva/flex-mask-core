@@ -2,7 +2,6 @@ import removePrefix from './remove-prefix'
 import applyPrefix from './apply-prefix'
 
 const Prefix = context => {
-  
   let prefix = ''
   let maskStr = context.stringMask
 

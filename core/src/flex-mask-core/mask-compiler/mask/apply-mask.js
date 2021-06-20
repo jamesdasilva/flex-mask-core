@@ -20,7 +20,7 @@ const applyMask = (context) => {
   if(context.direction === 'left') {
     let valueWithMask = context.value 
     const { maxLimit } = context
-
+    console.log('maxLimit', maxLimit)
     for(let i = context.mask.length - 1; i >= 0; i--) {
       const lastPosition = maxLimit - 1
       const invertedPosition = lastPosition - context.mask[i].start

@@ -16,14 +16,14 @@ const makeApplicator = (maskStr) => {
   const context = createMaskContext(maskStr)
 
   const maskCompiler = MaskCompiler()
-
+  
   maskCompiler.use(Quantifiers)
-  maskCompiler.use(Direction)
   maskCompiler.use(Prefix)
+  maskCompiler.use(Direction)
   maskCompiler.use(Length)
   
   maskCompiler.compile(context)
-
+  
   const maskRunTime = MaskRuntime(context)
 
   const maskApplicator = (newValue) => {

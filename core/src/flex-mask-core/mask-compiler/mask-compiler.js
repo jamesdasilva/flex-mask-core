@@ -10,7 +10,7 @@ const MaskCompiler = () => {
   }
 
   const compile = (context) => {
-
+    
     for(let i = 0; i < stack.length; i++) {
       stack[i](context)
     }
