@@ -7,7 +7,7 @@ const Prefix = context => {
   let prefix = ''
   let maskStr = context.stringMask
 
-  const prefixWithCmdArray = maskStr?.match(/''[^;]+;/) ?? []
+  const prefixWithCmdArray = maskStr?.match(/:\[[^;]+;/) ?? []
   const hasPrefix = prefixWithCmdArray.length > 0
 
   if (hasPrefix) {

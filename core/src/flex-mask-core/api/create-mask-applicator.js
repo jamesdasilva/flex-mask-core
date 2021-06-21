@@ -1,6 +1,6 @@
 import MaskCompiler from '../mask-compiler'
 import MaskRuntime from '../mask-runtime/mask-runtime'
-import { Quantifiers, Direction, Prefix, Length } from '../middlewares'
+import { Quantifiers, Direction, Prefix, Postfix, Length } from '../middlewares'
 
 const createMaskContext = (maskStr) => {
   return {
@@ -19,6 +19,7 @@ const makeApplicator = (maskStr) => {
   
   maskCompiler.use(Quantifiers)
   maskCompiler.use(Prefix)
+  maskCompiler.use(Postfix)
   maskCompiler.use(Direction)
   maskCompiler.use(Length)
   
@@ -38,6 +39,7 @@ const makeApplicator = (maskStr) => {
   maskApplicator.prototype.mask = context.mask
   maskApplicator.prototype.direction = context.direction
   maskApplicator.prototype.prefix = context.prefix
+  maskApplicator.prototype.postfix = context.postfix
   maskApplicator.prototype.maxLimit = context.maxLimit
   maskApplicator.prototype.filter = context.filter
   
